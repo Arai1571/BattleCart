@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     const int MaxLane = 2;
     const float LaneWidth = 6.0f;
     const float StunDuration = 0.5f;
-    float recoverTime = 0.0f;
+    float recoverTime = 0.0f; //Hitを食らったときにStunDurationを入れる
 
     public int life = 10;
     CharacterController controller;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             //左右に動かす
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) MoveToLeft();
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.A)) MoveToRight();
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) MoveToRight();
             //ジャンプさせる
             if (Input.GetKeyDown("space")) Jump();
 
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             //徐々に加速しZ方向に常に前進させる
-            float accelerationZ = moveDirection.z + (accelerationZ * Time.deltaTime);
+            float acceleratedZ = moveDirection.z + (accelerationZ * Time.deltaTime);
             moveDirection.z = Mathf.Clamp(accelerationZ, 0, speedZ);
 
             //X方向は目標のポジションまでの差分の割合で速度を計算
@@ -114,19 +114,19 @@ public class PlayerController : MonoBehaviour
     {
         //recoverTimeが作動中かLifeが０になった場合はStunフラグがON
         bool stun = recoverTime > 0.0f || life <= 0;
-        //StunフラグがOFFの場合はボディを確実に表示
+        //StunフラグがOFFの場合はボディを確実に表示。点滅処理の区切りが悪いと見えていない可能性があるため
         if (!stun) body.SetActive(true);
         //Stunフラグをリターン
         return stun;
     }
 
-    //接触判定
+    //CharacterControllerに衝突判定が生じた時の処理
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         //スタン中であれば何もせず終了
         if (IsStun()) return;
 
-        //ぶつかった相手がEnemyなら
+        //Hitした相手がEnemyなら
         if (hit.gameObject.CompareTag("Enemy"))
         {
             //体力をマイナス

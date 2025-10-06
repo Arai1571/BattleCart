@@ -165,7 +165,7 @@ MonoBehaviour:
   accelerationZ: 8
   speedX: 10
   speedJump: 10
-  body: {fileID: 0}
+  body: {fileID: 2567677346424811061}
   boms: {fileID: 0}
 --- !u!1001 &2159545002140784365
 PrefabInstance:

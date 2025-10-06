@@ -1,18 +1,18 @@
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public GameObject bulletPrefab;//Bulletのプレハブ情報
+    public GameObject bulletPrefab; //Bulletのプレハブ情報
     Transform player; //プレイヤーのTransform情報
     GameObject gate; //プレイヤーについているGateオブジェクトの情報
     public float shootSpeed = 100f; //投げた時の力
-    public float upSpeed = 8f; //投げた時の上向きの力
+    public float upSpeed = 8f;　//投げた時の上向きの力
+
     bool possibleShoot; //ショット可能フラグ
 
     public int shotPower = 10;
-    public int recoverSeconds = 3;
+    public int recoverySeconds = 3;
 
     Camera cam; //カメラ情報の取得
 
@@ -23,10 +23,10 @@ public class Shooter : MonoBehaviour
 
         //プレイヤーのTransform情報の取得
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        //プレイヤーについているGameオブジェクト(子オブジェクト)情報の取得
-        gate = player.Find("Gate").gameObject;
+        //プレイヤーについているGateオブジェクト情報の取得
+        gate = player.transform.Find("Gate").gameObject;
 
-        //カメラ情報の取得(MainCameraタグがついているカメラ情報は簡単に参照可)
+        //カメラ情報の取得（MainCameraタグがついているカメラ情報は簡単に参照可）
         cam = Camera.main;
     }
 
@@ -34,12 +34,13 @@ public class Shooter : MonoBehaviour
     {
         if (GameManager.gameState != GameState.playing) return;
 
-        if (Input.GetMouseButtonDown(0)) //もしも左クリックが押されたら
+        if (Input.GetMouseButtonDown(0))　//もしも左クリックがおされたら
         {
-            if (possibleShoot) Shot();//フラグがONならショットするメソッド
+            if (possibleShoot) Shot(); //フラグがONならショットするメソッド
         }
     }
 
+    //ショット可能にする
     void ShootEnabled()
     {
         possibleShoot = true;
@@ -59,10 +60,10 @@ public class Shooter : MonoBehaviour
 
         //※カメラの角度を考慮した方向を生成
         Vector3 v = new Vector3(
-            cam.transform.forward.x * shootSpeed,
-            cam.transform.forward.y * upSpeed,
-            cam.transform.forward.z * shootSpeed
-        );
+                    cam.transform.forward.x * shootSpeed,
+                    cam.transform.forward.y + upSpeed,
+                    cam.transform.forward.z * shootSpeed
+                    );
 
         //生成した球のAddForceの力でシュート
         rbody.AddForce(v, ForceMode.Impulse);
@@ -81,8 +82,8 @@ public class Shooter : MonoBehaviour
     //回復コルーチン
     IEnumerator RecoverPower()
     {
-        //RecoverSeconds秒まつ
-        yield return new WaitForSeconds(recoverSeconds);
-        shotPower++; //ひとつ回復
+        //RecoverySeconds秒待つ
+        yield return new WaitForSeconds(recoverySeconds);
+        shotPower++; //１つ回復
     }
 }

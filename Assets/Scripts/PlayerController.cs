@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject boms;
 
+    public AudioClip se_shot;
+    public AudioClip se_damage;
+    public AudioClip se_jump;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();//コンポーネント取得
@@ -103,7 +107,11 @@ public class PlayerController : MonoBehaviour
         //もしもスタン中であれば何もせず終了
         if (IsStun()) return;
         //地面に接触していればY方向の力を設定
-        if (controller.isGrounded) moveDirection.y = speedJump;
+        if (controller.isGrounded)
+        {
+            SEPlay(SEType.Jump);
+            moveDirection.y = speedJump;
+        }
     }
 
     //体力をリターン
@@ -135,11 +143,15 @@ public class PlayerController : MonoBehaviour
             //体力をマイナス
             life--;
 
+            SEPlay(SEType.Damage);
+
             //スピードをリセット
             speedZ = 10;
 
             if (life <= 0)
             {
+                SoundManager.instance.StopBgm();//曲を止める
+                
                 //ゲームオーバになった時にその時のボディションZの座標をScoreキーワードでPCに保存
                 PlayerPrefs.SetFloat("Score", transform.position.z);
 
@@ -162,5 +174,22 @@ public class PlayerController : MonoBehaviour
         if (val >= 0) body.SetActive(true);
         //負の周期なら非表示
         else body.SetActive(false);
+    }
+
+    //SE再生
+    public void SEPlay(SEType type)
+    {
+        switch (type)
+        {
+            case SEType.Shot:
+                GetComponent<AudioSource>().PlayOneShot(se_shot);
+                break;
+            case SEType.Damage:
+                GetComponent<AudioSource>().PlayOneShot(se_damage);
+                break;
+            case SEType.Jump:
+                GetComponent<AudioSource>().PlayOneShot(se_jump);
+                break;
+        }
     }
 }

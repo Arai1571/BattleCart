@@ -11,13 +11,18 @@ public class Shooter : MonoBehaviour
 
     bool possibleShoot; //ショット可能フラグ
 
-    public int shotPower = 10;
-    public int recoverySeconds = 3;
+    public int shotPower = 10;//ショットの残数
+    public int recoverySeconds = 3;//一発一発の回復時間
 
     Camera cam; //カメラ情報の取得
 
+    PlayerController playerCnt;//他オブジェクトについているPlayerControllerスクリプト
+
     void Start()
     {
+        //PlayerControllerの取得
+        playerCnt = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
         //時間差でシュート可能にする
         Invoke("ShootEnabled", 0.5f);
 
@@ -51,6 +56,8 @@ public class Shooter : MonoBehaviour
     {
         //プレイヤーが消滅していなければ
         if (player == null || shotPower <= 0) return;
+
+        playerCnt.SEPlay(SEType.Shot);//ショット音を鳴らす
 
         //プレイヤーの位置にBulletを生成
         GameObject obj = Instantiate(bulletPrefab, gate.transform.position, Quaternion.identity);

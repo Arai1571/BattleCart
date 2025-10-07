@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     const float StunDuration = 0.5f;
     float recoverTime = 0.0f; //Hitを食らったときにStunDurationを入れる
 
-    public int life = 10;
+    public int life = 3;
     CharacterController controller;
     Vector3 moveDirection = Vector3.zero;
     int targetLane;
@@ -76,6 +76,9 @@ public class PlayerController : MonoBehaviour
         //移動後設置してたらY方向の速度はリセットする
         if (controller.isGrounded) moveDirection.y = 0;
 
+        //１秒に１ずつトップスピードの上限値が増えていく
+        speedZ += Time.deltaTime;
+
     }
 
     //左のレーンに移動を開始
@@ -132,8 +135,14 @@ public class PlayerController : MonoBehaviour
             //体力をマイナス
             life--;
 
+            //スピードをリセット
+            speedZ = 10;
+
             if (life <= 0)
             {
+                //ゲームオーバになった時にその時のボディションZの座標をScoreキーワードでPCに保存
+                PlayerPrefs.SetFloat("Score", transform.position.z);
+
                 GameManager.gameState = GameState.gameover;
                 Instantiate(boms, transform.position, Quaternion.identity);//爆発エフェクトの発生
                 Destroy(gameObject, 0.5f); //少し時間差で自分を消滅

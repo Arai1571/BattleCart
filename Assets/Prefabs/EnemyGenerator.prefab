@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5225457978101663148
+--- !u!1 &2406292487281440927
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8164779132249029617}
-  - component: {fileID: 5414196470070914477}
+  - component: {fileID: 8450607850665733360}
+  - component: {fileID: 2602940035199093047}
   m_Layer: 0
-  m_Name: Shooter
-  m_TagString: Shooter
+  m_Name: EnemyGenerator
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8164779132249029617
+--- !u!4 &8450607850665733360
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5225457978101663148}
+  m_GameObject: {fileID: 2406292487281440927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.1, z: 5.88}
+  m_LocalPosition: {x: 0, y: 0, z: 120}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5414196470070914477
+--- !u!114 &2602940035199093047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5225457978101663148}
+  m_GameObject: {fileID: 2406292487281440927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f652a5e8c5440e8b1db1ad4546d563, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e1f5abf380014987a6bb8bec2b614cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3459099437761977785, guid: ccd8482691e62ce4789ebf63dd62b472, type: 3}
-  shootSpeed: 100
-  upSpeed: 30
-  shotPower: 10
-  recoverySeconds: 3
+  dangerPrefab:
+  - {fileID: 7757880087488097017, guid: d23a7c40d17939849ad3824367153be8, type: 3}
+  - {fileID: 5636303665182203261, guid: 0122fd215b99a405f986925109945272, type: 3}
+  minIntervalTime: 0.1
+  maxIntervalTime: 1
+  defaultPos: {x: 0, y: 3, z: 120}
+  followSpeed: 8

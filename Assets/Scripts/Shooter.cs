@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
     Transform player; //プレイヤーのTransform情報
     GameObject gate; //プレイヤーについているGateオブジェクトの情報
     public float shootSpeed = 100f; //投げた時の力
-    public float upSpeed = 8f;　//投げた時の上向きの力
+    public float upSpeed = 8f; //投げた時の上向きの力
 
     bool possibleShoot; //ショット可能フラグ
 
@@ -34,7 +34,7 @@ public class Shooter : MonoBehaviour
     {
         if (GameManager.gameState != GameState.playing) return;
 
-        if (Input.GetMouseButtonDown(0))　//もしも左クリックがおされたら
+        if (Input.GetMouseButtonDown(0)) //もしも左クリックがおされたら
         {
             if (possibleShoot) Shot(); //フラグがONならショットするメソッド
         }
@@ -61,7 +61,7 @@ public class Shooter : MonoBehaviour
         //※カメラの角度を考慮した方向を生成
         Vector3 v = new Vector3(
                     cam.transform.forward.x * shootSpeed,
-                    cam.transform.forward.y + upSpeed,
+                    cam.transform.forward.y * upSpeed,
                     cam.transform.forward.z * shootSpeed
                     );
 

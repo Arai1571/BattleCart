@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6337307374115802254}
   m_Layer: 0
   m_Name: Gate
-  m_TagString: Untagged
+  m_TagString: Gate
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,14 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f377e77f021cb4dd392ac9b65d04428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 10
+  life: 3
   gravity: 9.81
   speedZ: 10
   accelerationZ: 8
   speedX: 10
   speedJump: 10
   body: {fileID: 2567677346424811061}
-  boms: {fileID: 0}
+  boms: {fileID: 194749221618635050, guid: d207e52fd5c4040cf95bb5ac19895ea8, type: 3}
 --- !u!1001 &2159545002140784365
 PrefabInstance:
   m_ObjectHideFlags: 0

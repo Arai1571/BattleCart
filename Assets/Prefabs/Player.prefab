@@ -168,6 +168,9 @@ MonoBehaviour:
   speedJump: 10
   body: {fileID: 2567677346424811061}
   boms: {fileID: 194749221618635050, guid: d207e52fd5c4040cf95bb5ac19895ea8, type: 3}
+  se_shot: {fileID: 8300000, guid: a478b3aa98f00ec428e0658d74888401, type: 3}
+  se_damage: {fileID: 8300000, guid: 96647c7c42cd2f042bb6c3231505b32d, type: 3}
+  se_jump: {fileID: 8300000, guid: c719c1e25737a9d4393528e17daafb17, type: 3}
 --- !u!82 &2957686620072886149
 AudioSource:
   m_ObjectHideFlags: 0
@@ -177,10 +180,10 @@ AudioSource:
   m_GameObject: {fileID: 6330983616393158871}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7174769783521439603, guid: 801251a2dd748624b8b741ec8414b8bb, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

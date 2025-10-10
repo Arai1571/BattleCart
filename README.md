@@ -127,7 +127,9 @@ IEnumerator RecoverPower()
     shotPower++; //１つ回復
 }
 ```
-
+## 今後の展望
+* 自動走行してPlayerを追いかける敵をNaveMeshAgentなどの技術で作る
+* オプションメニューを用意して難易度を変えたらカメラの微調整ができるような仕組みを作れるように学習中
 
 
 

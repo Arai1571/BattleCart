@@ -9,10 +9,8 @@
 ## ゲームプレイ方法
 [ゲームのサンプルプレイ](https://arai1571.github.io/BattleCart_web/)
 
-<<<<<<< HEAD
 ![ゲーム画面](ReadmeImg/battlecart.jpg)
 =======
-![ゲーム画面](ReadmeImg/battlecart.jpg)
 
 ### 操作方法
 * Aキー（左キー）：レーンを左に移動
@@ -138,3 +136,4 @@ IEnumerator RecoverPower()
 
 
 >>>>>>> 4d63bf0d2bfbc2324d9aea5f4005dda13da384f1
+
